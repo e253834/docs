@@ -15,9 +15,6 @@ apt install postgresql -y
 sudo -i -u postgres psql -c "CREATE DATABASE onlyoffice;"
 sudo -i -u postgres psql -c "CREATE USER onlyoffice WITH password 'onlyoffice';"
 sudo -i -u postgres psql -c "GRANT ALL privileges ON DATABASE onlyoffice TO onlyoffice;"
-sudo -i -u postgres psql -c "CREATE DATABASE nextcloud;"
-sudo -i -u postgres psql -c "CREATE USER nextcloud WITH password 'nextcloud';"
-sudo -i -u postgres psql -c "GRANT ALL privileges ON DATABASE nextcloud TO nextcloud;"
 
 apt install rabbitmq-server -y
 
