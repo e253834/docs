@@ -9,6 +9,7 @@ apt-get update
 apt install nginx-extras -y
 grep -v "\[::\]:80 default_server" /etc/nginx/sites-enabled/default > /etc/nginx/sites-enabled/default2
 mv /etc/nginx/sites-enabled/default2 /etc/nginx/sites-enabled/default
+service nginx restart
 
 apt install postgresql -y
 sudo -i -u postgres psql -c "CREATE DATABASE onlyoffice;"
