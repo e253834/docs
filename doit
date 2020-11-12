@@ -1,0 +1,30 @@
+#!/bin/bash
+
+hostnamectl set-hostname docs
+
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5
+echo "deb https://download.onlyoffice.com/repo/debian squeeze main" | tee /etc/apt/sources.list.d/onlyoffice.list
+apt-get update
+
+apt install nginx-extras
+
+apt install postgresql
+sudo -i -u postgres psql -c "CREATE DATABASE onlyoffice;"
+sudo -i -u postgres psql -c "CREATE USER onlyoffice WITH password 'onlyoffice';"
+sudo -i -u postgres psql -c "GRANT ALL privileges ON DATABASE onlyoffice TO onlyoffice;"
+
+apt install rabbitmq-server
+
+apt install onlyoffice-documentserver
+
+echo enp0s3: \\4{enp0s3} >> /etc/issue
+echo enp0s8: \\4{enp0s8} >> /etc/issue
+echo "" >> /etc/issue
+
+function eof {
+  cd;
+  rm -rf ~/docs;
+  systemctl reboot;
+}
+
+trap eof EXIT
